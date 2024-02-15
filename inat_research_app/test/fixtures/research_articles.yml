@@ -1,0 +1,33 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  doi: MyString
+  pmid: MyString
+  europe_pmc_url: MyString
+  about_brazil: false
+  from_brazilians: false
+  uses_inaturalist_prominently: false
+  title: MyText
+  authorString: MyText
+  authorList: MyText
+  journalInfo: MyText
+  pubYear: 1
+  pageInfo: MyString
+  abstractText: MyText
+  affiliation: MyText
+
+two:
+  doi: MyString
+  pmid: MyString
+  europe_pmc_url: MyString
+  about_brazil: false
+  from_brazilians: false
+  uses_inaturalist_prominently: false
+  title: MyText
+  authorString: MyText
+  authorList: MyText
+  journalInfo: MyText
+  pubYear: 1
+  pageInfo: MyString
+  abstractText: MyText
+  affiliation: MyText

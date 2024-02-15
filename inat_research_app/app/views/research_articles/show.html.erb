@@ -1,0 +1,59 @@
+<h1>Article Details</h1>
+
+<div class="article-details">
+  <h2><%= raw @research_article.title %></h2>
+  <p><strong>Authors:</strong> <%= @research_article.authorString %></p>
+  <p><strong>DOI:</strong> <%= @research_article.doi %></p>
+  <p><strong>PMID:</strong> <%= @research_article.pmid %></p>
+  <p><strong>Publication Year:</strong> <%= @research_article.pubYear %></p>
+  
+  <% if @research_article.journalInfo.present? %>
+    <% journal_info = JSON.parse(@research_article.journalInfo) %>
+    <p><strong>Journal:</strong> <%= journal_info['journal']['title'] rescue '' %></p>
+    <p><strong>Volume:</strong> <%= journal_info['volume'] rescue '' %>, <strong>Issue:</strong> <%= journal_info['issue'] rescue '' %></p>
+  <% end %>
+  
+  <p><strong>Page Info:</strong> <%= @research_article.pageInfo %></p>
+  <p><strong>Main affiliation:</strong> <%= @research_article.affiliation %></p>
+  <h3>Abstract</h3>
+  <p><%= raw @research_article.abstractText %></p>
+  
+  <%= link_to 'View Full Article', @research_article.europe_pmc_url, target: '_blank', class: 'btn btn-primary' %>
+</div>
+<%= form_with model: @research_article, local: true do |form| %>
+  <div>
+    <strong>About Brazil:</strong>
+    <%= form.radio_button :about_brazil, "true" %>
+    <%= form.label :about_brazil_true, 'Yes' %>
+    <%= form.radio_button :about_brazil, "false" %>
+    <%= form.label :about_brazil_false, 'No' %>
+    <%= form.radio_button :about_brazil, "", { checked: @research_article.about_brazil.nil? } %>
+    <%= form.label :about_brazil_nil, 'Not Specified' %>
+  </div>
+  
+  <div>
+    <strong>From Brazilians:</strong>
+    <%= form.radio_button :from_brazilians, "true" %>
+    <%= form.label :from_brazilians_true, 'Yes' %>
+    <%= form.radio_button :from_brazilians, "false" %>
+    <%= form.label :from_brazilians_false, 'No' %>
+    <%= form.radio_button :from_brazilians, "", { checked: @research_article.from_brazilians.nil? } %>
+    <%= form.label :from_brazilians_nil, 'Not Specified' %>
+  </div>
+  
+  <div>
+    <strong>Uses iNaturalist Prominently:</strong>
+    <%= form.radio_button :uses_inaturalist_prominently, "true" %>
+    <%= form.label :uses_inaturalist_prominently_true, 'Yes' %>
+    <%= form.radio_button :uses_inaturalist_prominently, "false" %>
+    <%= form.label :uses_inaturalist_prominently_false, 'No' %>
+    <%= form.radio_button :uses_inaturalist_prominently, "", { checked: @research_article.uses_inaturalist_prominently.nil? } %>
+    <%= form.label :uses_inaturalist_prominently_nil, 'Not Specified' %>
+  </div>
+
+  <%= form.submit 'Submit', class: 'btn btn-success' %>
+<% end %>
+
+
+
+<%= link_to 'Back to List', research_articles_path, class: 'btn btn-secondary' %>

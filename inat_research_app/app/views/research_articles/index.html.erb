@@ -1,0 +1,28 @@
+<h1>Research Articles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>DOI</th>
+      <th>PMID</th>
+      <th>Title</th>
+      <th>About Brazil</th>
+      <th>From Brazilians</th>
+      <th>Uses iNaturalist Prominently</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @research_articles.each do |article| %>
+      <tr>
+        <td><%= article.doi %></td>
+        <td><%= article.pmid %></td>
+        <td><%= raw article.title %></td>
+        <td><%= boolean_to_text(article.about_brazil) %></td>
+        <td><%= boolean_to_text(article.from_brazilians) %></td>
+        <td><%= boolean_to_text(article.uses_inaturalist_prominently) %></td>
+        <td><%= link_to 'View', research_article_path(article) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
