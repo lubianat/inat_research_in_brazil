@@ -14,24 +14,18 @@
  *= require_self
  */
 /* Hide the original radio buttons */
-.hidden-radio {
-  display: none;
+.form-row {
+  display: flex;
+  justify-content: start;
+  margin-bottom: 10px;
 }
 
-/* Style labels as buttons */
-.btn-radio {
-  display: inline-block;
-  padding: 10px 20px;
-  margin-right: 10px;
-  cursor: pointer;
-  background-color: #f0f0f0;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.category, .option {
+  flex: 1; /* Ensures equal width for each category/option */
+  text-align: center; /* Center-aligns the text */
 }
 
-/* Highlight the selected button */
-.btn-radio.selected {
-  background-color: #007bff;
-  color: white;
-  border-color: #007bff;
+/* Optional: Adjusts the spacing between radio buttons and labels */
+input[type="radio"] {
+  margin-right: 5px;
 }
