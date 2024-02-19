@@ -2,8 +2,16 @@ class ResearchArticlesController < ApplicationController
   before_action :set_research_article, only: [:show, :edit, :update]
 
   def index
-    @research_articles = ResearchArticle.all
+    if params[:filter_all_yes] == 'true'
+      @research_articles = ResearchArticle.where(about_brazil: true, from_brazilians: true, uses_inaturalist_prominently: true)
+    elsif params[:filter_all_not_specified] == 'true'
+      @research_articles = ResearchArticle.where(about_brazil: nil, from_brazilians: nil, uses_inaturalist_prominently: nil)
+    else
+      @research_articles = ResearchArticle.all
+    end
   end
+  
+
 
   def show
   end

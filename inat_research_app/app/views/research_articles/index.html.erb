@@ -1,5 +1,20 @@
 <h1>Research Articles</h1>
 
+<%= form_with(url: research_articles_path, method: :get, local: true) do |form| %>
+  <div>
+    <%= form.check_box :filter_all_yes, { checked: params[:filter_all_yes] == 'true' }, 'true', 'false' %>
+    <%= form.label :filter_all_yes, 'Show only articles where all categories are "Yes"' %>
+  </div>
+  <div>
+    <%= form.check_box :filter_all_not_specified, { checked: params[:filter_all_not_specified] == 'true' }, 'true', 'false' %>
+    <%= form.label :filter_all_not_specified, 'Show only articles where all categories are "Not Specified"' %>
+  </div>
+  <%= form.submit 'Filter' %>
+<% end %>
+
+<!-- Displaying the total count of articles -->
+<p>Total Articles: <%= @research_articles.size %></p>
+
 <table>
   <thead>
     <tr>
@@ -15,7 +30,7 @@
   <tbody>
     <% @research_articles.each do |article| %>
       <tr>
-        <td><%= article.doi %></td>
+        <td><%= link_to article.doi, "https://doi.org/#{article.doi}", target: '_blank' %></td>
         <td><%= article.pmid %></td>
         <td><%= raw article.title %></td>
         <td><%= boolean_to_text(article.about_brazil) %></td>
